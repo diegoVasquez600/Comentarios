@@ -1,1 +1,70 @@
-<p>add-edit-comment works!</p>
+<h3 class="mt-3">Add Comment</h3>
+<form [formGroup]="addNewComment" (ngSubmit)="AddComment()">
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      id="title"
+      placeholder="Comment title"
+      formControlName="title"
+      autocomplete="off"
+    />
+    <span
+      *ngIf="
+        addNewComment.get('title')?.invalid &&
+        addNewComment.get('title')?.touched === true
+      "
+      class="text-danger mt-2"
+    >
+      The <strong>Title</strong> is required
+    </span>
+  </div>
+  <div class="mb-3">
+    <label for="createdby" class="form-label">Created By</label>
+    <input
+      type="text"
+      class="form-control"
+      id="createdby"
+      placeholder="Comment title"
+      formControlName="createdby"
+    />
+    <span
+      *ngIf="
+        addNewComment.get('createdby')?.invalid &&
+        addNewComment.get('createdby')?.touched === true
+      "
+      class="text-danger mt-2"
+    >
+      The <strong>Creator</strong> is required
+    </span>
+  </div>
+  <div class="mb-3">
+    <label for="comment" class="form-label">Comment</label>
+    <textarea
+      class="form-control"
+      id="comment"
+      formControlName="comment"
+      rows="3"
+    ></textarea>
+
+    <span
+      *ngIf="
+        addNewComment.get('comment')?.invalid &&
+        addNewComment.get('comment')?.touched === true
+      "
+      class="text-danger mt-2"
+    >
+      The <strong>Comment</strong> is required
+    </span>
+
+    <button type="submit" [disabled]="addNewComment.invalid" class="btn btn-primary mt-4 float-end">Submit</button>
+    <button
+      type="button"
+      class="btn btn-secondary mt-4 float-start"
+      [routerLink]="['/']"
+    >
+      Back
+    </button>
+  </div>
+</form>
